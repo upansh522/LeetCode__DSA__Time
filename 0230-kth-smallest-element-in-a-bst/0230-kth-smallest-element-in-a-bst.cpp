@@ -11,23 +11,26 @@
  */
 class Solution {
 public:
-void Inorder_Traversal(TreeNode* root,vector<int> &inorder)
+void Inorder_Traversal(TreeNode* root,priority_queue<int> &max_heap,int k)
 {
     if (root==nullptr)
     return;
 
-    Inorder_Traversal(root->left,inorder);
-    inorder.push_back(root->val);
-    Inorder_Traversal(root->right,inorder);
+    Inorder_Traversal(root->left,max_heap,k);
+    max_heap.push(root->val);
+    if (max_heap.size()>k)
+    {
+        max_heap.pop();
+    }
+    Inorder_Traversal(root->right,max_heap,k);
     return;
 }
 
     int kthSmallest(TreeNode* root, int k) {
-        vector<int> inorder;
+        priority_queue<int>max_heap;
 
-        Inorder_Traversal(root,inorder);
-        int n=inorder.size();
-
-        return inorder[k-1];
+        Inorder_Traversal(root,max_heap,k);
+        return max_heap.top();
+        
     }
 };
