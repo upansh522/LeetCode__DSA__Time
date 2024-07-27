@@ -1,0 +1,61 @@
+class Solution {
+public:
+void dfs(vector<unordered_set<int>> &graph,vector<int> &visited,int currNode,vector<int>&ans,bool &hasCycle)
+{
+    visited[currNode]=1;
+    for (auto it:graph[currNode])
+    {
+        if (visited[it]==0)
+        {
+            dfs(graph,visited,it,ans,hasCycle);
+            if (hasCycle){
+            return;}
+        }
+        else if (visited[it]==1)
+        {
+            hasCycle=true;
+            return;
+        }
+    }
+    
+    visited[currNode]=2;
+    ans.push_back(currNode);
+}
+    bool canFinish(int n, vector<vector<int>>& prerequisites) {
+        vector<unordered_set<int>> graph(n);
+        vector<int> rootNode (n,1);
+        for (int i=0;i<prerequisites.size();i++){
+            int course=prerequisites[i][0];
+            int preReqcourse=prerequisites[i][1];
+            rootNode[preReqcourse]=0;
+            if (graph[preReqcourse].find(course)==graph[preReqcourse].end()){
+            graph[course].insert(preReqcourse);}
+            else {
+                return false;
+            }
+        }
+
+        vector<int>ans;
+        stack<int>qu;
+        vector<int> visited(n,0);
+        for (int i=0;i<n;i++)
+        {
+            if (rootNode[i]==1)
+            qu.push(i);
+        }
+        while(!qu.empty())
+        {
+            int currNode=qu.top();
+            qu.pop();
+            bool hasCycle=false;
+            dfs(graph,visited,currNode,ans,hasCycle);
+            if (hasCycle){
+                return false;
+            }
+        }
+        if (ans.size()==n)
+        return true;
+        else
+        return false;
+    }
+};
