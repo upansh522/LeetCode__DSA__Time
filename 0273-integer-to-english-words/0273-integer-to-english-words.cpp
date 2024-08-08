@@ -1,59 +1,52 @@
 class Solution {
 public:
-    void makeHundredsString(int num, unordered_map<int, string>& mp,
-                            string& temp) {
-        int ones = num % 10;
-        num = num / 10;
-        int tens = num % 10;
-        num = num / 10;
-        int hundreds = num % 10;
-
-        if (hundreds > 0) {
-            temp += mp[hundreds] + " " + "Hundred";
-        }
-
-        if (tens > 1) {
-            if (!temp.empty()) temp += " ";
-            temp += mp[tens * 10];
-            if (ones > 0) temp += " " + mp[ones];
-        } else if (tens == 1 || ones > 0) {
-            if (!temp.empty()) temp += " ";
-            temp += mp[tens * 10 + ones];
-        }
-    }
-
     string numberToWords(int num) {
+        // Handle the special case where the number is zero
         if (num == 0) return "Zero";
 
-        unordered_map<int, string> mp = {
-            {0, "Zero"}, {1, "One"}, {2, "Two"}, {3, "Three"}, {4, "Four"}, 
-            {5, "Five"}, {6, "Six"}, {7, "Seven"}, {8, "Eight"}, {9, "Nine"},
-            {10, "Ten"}, {11, "Eleven"}, {12, "Twelve"}, {13, "Thirteen"}, 
-            {14, "Fourteen"}, {15, "Fifteen"}, {16, "Sixteen"}, {17, "Seventeen"}, 
-            {18, "Eighteen"}, {19, "Nineteen"}, {20, "Twenty"}, {30, "Thirty"},
-            {40, "Forty"}, {50, "Fifty"}, {60, "Sixty"}, {70, "Seventy"}, 
-            {80, "Eighty"}, {90, "Ninety"}
-        };
+        // Arrays to store words for single digits, tens, and thousands
+        const vector<string> ones = {"", "One", "Two", "Three", "Four", "Five", "Six", "Seven", "Eight", "Nine", "Ten", "Eleven", "Twelve", "Thirteen", "Fourteen", "Fifteen", "Sixteen", "Seventeen", "Eighteen", "Nineteen"};
+        const vector<string> tens = {"", "", "Twenty", "Thirty", "Forty", "Fifty", "Sixty", "Seventy", "Eighty", "Ninety"};
+        const vector<string> thousands = {"", "Thousand", "Million", "Billion"};
 
-        vector<int> hundreds;
+        // StringBuilder to accumulate the result
+        string result = "";
+        int groupIndex = 0;
+
+        // Process the number in chunks of 1000
         while (num > 0) {
-            hundreds.push_back(num % 1000);
-            num /= 1000;
-        }
+            // Process the last three digits
+            if (num % 1000 != 0) {
+                string groupResult = "";
+                int part = num % 1000;
 
-        string ans = "";
-        vector<string> v = {"Thousand", "Million", "Billion"};
+                // Handle hundreds
+                if (part >= 100) {
+                    groupResult = ones[part / 100] + " Hundred ";
+                    part %= 100;
+                }
 
-        for (int i = hundreds.size() - 1; i >= 0; --i) {
-            string temp = "";
-            makeHundredsString(hundreds[i], mp, temp);
-            if (!temp.empty()) {
-                if (!ans.empty()) ans += " ";
-                ans += temp;
-                if (i > 0) ans += " " + v[i - 1];
+                // Handle tens and units
+                if (part >= 20) {
+                    groupResult += tens[part / 10] + " ";
+                    part %= 10;
+                }
+
+                // Handle units
+                if (part > 0) {
+                    groupResult += ones[part] + " ";
+                }
+
+                // Append the scale (thousand, million, billion) for the current group
+                groupResult += thousands[groupIndex] + " ";
+                // Insert the group result at the beginning of the final result
+                result = groupResult + result;
             }
+            // Move to the next chunk of 1000
+            num /= 1000;
+            groupIndex++;
         }
 
-        return ans;
+        return result.substr(0, result.find_last_not_of(" ") + 1); // Remove trailing spaces
     }
 };
