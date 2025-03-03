@@ -1,11 +1,10 @@
 class Solution {
 public:
-    int f(vector<int> nums, int ind, vector<vector<int>>& dp, int rem) {
-        int n = nums.size();
-        if (n==ind) {
+    int f(vector<int> &nums, int ind, vector<vector<int>>& dp, int rem) {
+        if (nums.size()==ind) {
             return nums[rem];
         }
-        if (n-1==ind){
+        if (nums.size()-1==ind){
             return max(nums[rem],nums[ind]);
         }
         if (dp[ind][rem] != -1) {
