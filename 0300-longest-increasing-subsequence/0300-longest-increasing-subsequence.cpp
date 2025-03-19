@@ -19,19 +19,23 @@ public:
     }
 
     int fT(vector<int>& nums,vector<vector<int>>& dp) {
-        int n=nums.size();
+         int n=nums.size();
+        vector<int>curr(n+1,0);
+        vector<int>next(n+1,0);
+       
         for (int i = n - 1; i >= 0; i--) {
             for (int j = i; j >= -1; j--) {
                 int t = 0;
                 if (j == -1 || nums[i] > nums[j])
-                    t = 1 + dp[i + 1][i+1];
+                    t = 1 + next[i+1];
                 // notTake
-                int nt = dp[i + 1][j+1];
+                int nt = next[j+1];
 
-                dp[i][j + 1] = max(t, nt);
+                curr[j + 1] = max(t, nt);
             }
+            next=curr;
         }
-        return dp[0][0];
+        return next[0];
     }
     int lengthOfLIS(vector<int>& nums) {
         int n = nums.size();
