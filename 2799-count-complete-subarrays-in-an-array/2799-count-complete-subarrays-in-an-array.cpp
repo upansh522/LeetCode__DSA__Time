@@ -1,35 +1,25 @@
 class Solution {
 public:
-    int k; // total number of unique elements
-
-    // Recursive function to count complete subarrays starting at index i
-    int countFrom(int i, int j, unordered_set<int>& seen, const vector<int>& nums, vector<vector<int>>& dp) {
-    if (j >= nums.size()) return 0;
-    if (dp[i][j] != -1) return dp[i][j];
-
-    seen.insert(nums[j]);
-
-    int count = 0;
-    if (seen.size() == k) count = 1;
-
-    dp[i][j] = count + countFrom(i, j + 1, seen, nums, dp);
-    seen.erase(nums[j]); // backtrack for correctness
-    return dp[i][j];
-}
-
-
     int countCompleteSubarrays(vector<int>& nums) {
-        unordered_set<int> totalSet(nums.begin(), nums.end());
-        k = totalSet.size(); 
         int n=nums.size();
-        vector<vector<int>>dp(n,vector<int>(n,-1));
-
-        int total = 0;
-        for (int i = 0; i < nums.size(); ++i) {
-            unordered_set<int> seen;
-            total += countFrom(i, i, seen, nums,dp); 
+        int i=0,j=0;
+        unordered_set<int>st;
+        for (auto it:nums){
+            st.insert(it);
         }
-
-        return total;
+        int k=st.size();
+        int ans=0;
+        for (int i=0;i<n;i++){
+            unordered_set<int>stt;
+            for (int j=i;j<n;j++){
+                stt.insert(nums[j]);
+                if (stt.size()==k)ans++;
+                if (stt.size()>k){
+                    break;
+                }
+            }
+        }
+        return ans;
+        
     }
 };
