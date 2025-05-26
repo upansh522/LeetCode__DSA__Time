@@ -16,12 +16,11 @@ public:
             if (dp[0][i]){
                 ans[i]=0;
             }else{
-                for (int j=0;j<i;j++){
-                    if (dp[j+1][i]){
-                        ans[i]=min(ans[i],ans[j]+1);
-                    }
+            for (int j=i;j>=0;j--){
+                if (dp[j][i]){
+                    ans[i]=min(ans[i],ans[j-1]+1);
                 }
-            }
+            }}
         }
         
         return ans[n-1];
