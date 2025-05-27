@@ -1,44 +1,44 @@
 class Solution {
 public:
+int f(unordered_map<char,int>& mp){
+    int ans=0;
+    for (auto it:mp){
+        ans=max(it.second,ans);
+    }
+    return ans;
+}
     int largestPathValue(string colors, vector<vector<int>>& edges) {
         int n = colors.size();
-        vector<vector<int>> adj(n);
-        vector<int> indegree(n);
-        
-        // Build graph and indegree count
-        for (auto& e : edges) {
-            adj[e[0]].push_back(e[1]);
-            indegree[e[1]]++;
+        int m = edges.size();
+        vector<vector<int>> graph(n);
+        vector<int> inComing(n, 0);
+        for (int i = 0; i < m; i++) {
+            auto u = edges[i][0], v = edges[i][1];
+            graph[u].push_back(v);
+            inComing[v]++;
         }
-        
-        queue<int> q;
-        for (int i = 0; i < n; i++)
-            if (indegree[i] == 0)
-                q.push(i);
-        
-        vector<array<int,26>> dp(n);
-        for (int i = 0; i < n; i++)
-            dp[i].fill(0);
-        
-        int seen = 0, ans = 0;
-        
-        // Topological traversal
-        while (!q.empty()) {
-            int u = q.front(); q.pop();
-            seen++;
-            int c = colors[u] - 'a';
-            dp[u][c]++;
-            ans = max(ans, dp[u][c]);
-            
-            for (int v : adj[u]) {
-                for (int k = 0; k < 26; k++)
-                    dp[v][k] = max(dp[v][k], dp[u][k]);
-                if (--indegree[v] == 0)
-                    q.push(v);
+        queue<int>qu;
+        vector<unordered_map<char,int>>mp(n);
+
+        for (int i=0;i<n;i++){
+            if (inComing[i]==0){
+                qu.push(i);
             }
         }
-        
-        // If not all nodes were visited, there is a cycle
-        return seen == n ? ans : -1;
+        int ans=-1;
+        while(!qu.empty()){
+            int currNode=qu.front();qu.pop();
+            mp[currNode][colors[currNode]]++;
+            ans=max(ans, f(mp[currNode]));
+            for (auto node:graph[currNode]){
+                inComing[node]--;
+                for (int i=0;i<26;i++){
+                    char c=i+'a';
+                    mp[node][c]=max(mp[node][c],mp[currNode][c]);
+                }
+                if (inComing[node]==0)qu.push(node);
+            }
+        }
+        return ans;
     }
 };
