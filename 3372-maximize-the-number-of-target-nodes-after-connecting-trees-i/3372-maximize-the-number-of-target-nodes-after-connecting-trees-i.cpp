@@ -1,43 +1,42 @@
 class Solution {
 public:
-    int dfs(int node, int parent, const vector<vector<int>>& children, int k) {
-        if (k < 0) {
-            return 0;
-        }
-        int res = 1;
-        for (int child : children[node]) {
-            if (child == parent) {
-                continue;
-            }
-            res += dfs(child, node, children, k - 1);
-        }
-        return res;
+int dfs(vector<int>&visit, unordered_map<int,vector<int>>&tree,int node,int k){
+    int t=0;
+    for (auto it:tree[node]){
+        if (visit[it]==0 && k>0){
+        visit[it]=1;
+        t+=1+dfs(visit,tree,it,k-1);}
     }
-
-    vector<int> build(const vector<vector<int>>& edges, int k) {
-        int n = edges.size() + 1;
-        vector<vector<int>> children(n);
-        for (const auto& edge : edges) {
-            children[edge[0]].push_back(edge[1]);
-            children[edge[1]].push_back(edge[0]);
-        }
-        vector<int> res(n);
-        for (int i = 0; i < n; i++) {
-            res[i] = dfs(i, -1, children, k);
-        }
-        return res;
+    return t;
+}
+vector<int> f(vector<vector<int>>& edge, int k){
+    int n=edge.size();
+    unordered_map<int,vector<int>>tree;
+    for (int i=0;i<n;i++){
+        int u=edge[i][0],v=edge[i][1];
+        tree[u].push_back(v);
+        tree[v].push_back(u);
     }
-
-    vector<int> maxTargetNodes(vector<vector<int>>& edges1,
-                               vector<vector<int>>& edges2, int k) {
-        int n = edges1.size() + 1, m = edges2.size() + 1;
-        vector<int> count1 = build(edges1, k);
-        vector<int> count2 = build(edges2, k - 1);
-        int maxCount2 = *max_element(count2.begin(), count2.end());
-        vector<int> res(n);
-        for (int i = 0; i < n; i++) {
-            res[i] = count1[i] + maxCount2;
-        }
-        return res;
+    int m=tree.size();
+    vector<int>ans(m,0);
+    for (int i=0;i<m;i++){
+    vector<int>visit(m,0);
+    visit[i]=1;
+    ans[i]=1+dfs(visit,tree,i,k);
+    }
+    return ans;
+}
+    vector<int> maxTargetNodes(vector<vector<int>>& edges1, vector<vector<int>>& edges2, int k) {
+        vector<int>tree1=f(edges1,k);
+        vector<int>tree2=f(edges2,k-1);
+        int extraPath=*max_element(tree2.begin(),tree2.end());
+        int n=tree1.size();
+        if (k>0){
+        for (int i=0;i<n;i++){
+            cout<<tree1[i]<< " ";
+            tree1[i]+=extraPath;
+            cout<<tree1[i]<<endl;
+        }}
+        return tree1;
     }
 };
