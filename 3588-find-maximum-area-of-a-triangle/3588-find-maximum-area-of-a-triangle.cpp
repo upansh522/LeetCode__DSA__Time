@@ -34,6 +34,7 @@ public:
 
             int size = abs(coords[i][0] - temp);
             int curr= coords[i][1];
+            // cout<<size<<"pair"<<curr<<endl;
             ans = max(ans, max(1LL * size * abs(curr-left), 1LL * size * abs(curr-right)));
         }
 
@@ -42,8 +43,13 @@ public:
 
     long long maxArea(vector<vector<int>>& coords) {
         sort(coords.begin(), coords.end(), [](const vector<int>& a, const vector<int>& b) {
-            return a[1] < b[1]; // sort by y descending
-        });
+    if (a[1] == b[1]) return a[0] < b[0];  // if y's are equal, sort by x
+    return a[1] < b[1];                   // otherwise, sort by y
+});
+
+        for (auto it: coords){
+            cout<<it[0]<<" "<<it[1]<<endl;
+        }
         int left = coords[0][1], right = coords.back()[1];
         long long x = (left!=right)?xf(coords, left, right):-1;
 
@@ -51,6 +57,7 @@ public:
         left = coords.back()[0], right = coords[0][0];
         long long y = (left!=right)?yf(coords, left, right):-1;
 
+        cout<<x<<" "<<y;
         return max(x, y);
     }
 };
