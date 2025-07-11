@@ -1,26 +1,19 @@
 class Solution {
 public:
-    int f(vector<int>& nums, int amt, vector<vector<int>>& dp, int ind) {
-        int n = nums.size();
-        if (ind == 0) {
-            return (amt % nums[0] == 0);
-        }
-
-        if (dp[amt][ind] != -1) {
-            return dp[amt][ind];
-        }
-
-        int notTaken = f(nums, amt, dp, ind - 1);
-        int taken = 0;
-        if (nums[ind] <= amt)
-            taken=f(nums, amt - nums[ind], dp, ind);
-
-        return dp[amt][ind] = taken + notTaken;
+int f(int amount, vector<int>& coins, int ind,  vector<vector<int>>&dp){
+    if (ind==0){
+        return (amount%coins[ind]==0)?1:0;
     }
-
-    int change(int amt, vector<int>& coins) {
-        int n = coins.size();
-        vector<vector<int>> dp(amt + 1, vector<int>(n, -1));
-        return f(coins, amt, dp, n - 1);
+    if (dp[ind][amount]!=-1)return dp[ind][amount];
+    int t=0;
+    if (amount>=coins[ind])
+    t=f(amount-coins[ind], coins, ind, dp);
+    int nt=f(amount, coins, ind-1, dp);
+    return dp[ind][amount]=nt+t;
+}
+    int change(int amount, vector<int>& coins) {
+        int n=coins.size();
+        vector<vector<int>>dp(n,vector<int>(amount+1,-1));
+        return f(amount, coins, n-1, dp);
     }
 };
