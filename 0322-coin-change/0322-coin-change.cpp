@@ -1,27 +1,23 @@
 class Solution {
 public:
-int f(vector<int>coins, int amt, vector<vector<int>>&dp, int ind){
-    if (ind ==0){
-        return (amt%coins[0])?INT_MAX:amt/coins[0];
+long long f(vector<int>& coins, int amount, int ind, vector<vector<long long>>&dp){
+    if (ind==0){
+        return (amount%coins[ind]==0)?long(amount/coins[ind]):INT_MAX;
     }
-
-    if (dp[amt][ind]!=-1)
-    return dp[amt][ind];
-
-    int notTaken=f(coins,amt,dp,ind-1);
-    int taken=INT_MAX;
-    if (amt>=coins[ind])
-    taken=f(coins,amt-coins[ind],dp,ind)+1;
-
-    return dp[amt][ind]=min(notTaken,taken);
+    if (dp[ind][amount]!=-1){
+        return dp[ind][amount];
+    }
+    long long nt=f(coins, amount, ind-1, dp);
+    long long t=INT_MAX;
+    if (amount>=coins[ind]){
+        t=1+f(coins, amount-coins[ind], ind, dp);
+    }
+    return dp[ind][amount]=min(t,nt);
 }
-    int coinChange(vector<int>& coins, int amt) {
+    int coinChange(vector<int>& coins, int amount) {
         int n=coins.size();
-        vector<vector<int>>dp(amt+1,vector<int>(n,-1));
-        int ans=f(coins,amt,dp,n-1);
-        if (ans==INT_MAX)
-        return -1;
-        else
-        return ans;
+        vector<vector<long long>>dp(n, vector<long long>(amount+1,-1));
+        long long ans=f(coins,amount, n-1, dp);
+        return (ans>=INT_MAX)?-1:ans;
     }
 };
