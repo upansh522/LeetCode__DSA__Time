@@ -1,22 +1,21 @@
 class Solution {
 public:
+int f(string &s, int i, int j, vector<vector<int>>&dp){
+    if (i>j)return 0;
+    
+    if (i==j)
+    return (s[i]==s[j])?1:0;
+
+    if (dp[i][j]!=-1)return dp[i][j];
+
+    if (s[i]==s[j]){
+        return dp[i][j]=2+f(s,i+1,j-1, dp);
+    }
+    return dp[i][j]=max(f(s, i, j-1,dp), f(s, i+1, j,dp));
+}
     int longestPalindromeSubseq(string s) {
-        int n = s.size();
-        string reversed_s = s;
-        reverse(reversed_s.begin(), reversed_s.end());
-
-        vector<int> prev(n, 0), curr(n, 0); // 1D DP tables
-
-        for (int i = 0; i < n; ++i) {
-            for (int j = 0; j < n; ++j) {
-                if (s[i] == reversed_s[j]) {
-                    curr[j] = (i > 0 && j > 0 ? prev[j - 1] : 0) + 1;
-                } else {
-                    curr[j] = max((j > 0 ? curr[j - 1] : 0), (i > 0 ? prev[j] : 0));
-                }
-            }
-            prev = curr; // Move current row to previous for the next iteration
-        }
-        return curr[n - 1];
+        int n=s.size();
+        vector<vector<int>>dp(n, vector<int>(n,-1));
+        return f(s, 0, n-1, dp);
     }
 };
