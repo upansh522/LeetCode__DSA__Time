@@ -1,61 +1,36 @@
 class Solution {
 public:
-void dfs(vector<unordered_set<int>> &graph,vector<int> &visited,int currNode,vector<int>&ans,bool &hasCycle)
-{
-    visited[currNode]=1;
-    for (auto it:graph[currNode])
-    {
-        if (visited[it]==0)
-        {
-            dfs(graph,visited,it,ans,hasCycle);
-            if (hasCycle){
-            return;}
+    bool canFinish(int n, vector<vector<int>>& pre) {
+        int m=pre.size();
+        vector<int>indegree(n,0);
+        vector<vector<int>> graph(n); 
+        for (int i=0;i<m;i++){
+            int v=pre[i][0];
+            int u=pre[i][1];
+            indegree[v]++;
+            graph[u].push_back(v);
         }
-        else if (visited[it]==1)
-        {
-            hasCycle=true;
-            return;
+
+        queue<int>qu;
+        for (int i=0;i<n;i++){
+            if (indegree[i]==0)qu.push(i);
         }
-    }
-    
-    visited[currNode]=2;
-    ans.push_back(currNode);
-}
-    bool canFinish(int n, vector<vector<int>>& prerequisites) {
-        vector<unordered_set<int>> graph(n);
-        vector<int> rootNode (n,1);
-        for (int i=0;i<prerequisites.size();i++){
-            int course=prerequisites[i][0];
-            int preReqcourse=prerequisites[i][1];
-            rootNode[preReqcourse]=0;
-            if (graph[preReqcourse].find(course)==graph[preReqcourse].end()){
-            graph[course].insert(preReqcourse);}
-            else {
-                return false;
+
+        while(!qu.empty()){
+            int node=qu.front();
+            qu.pop();
+            for (auto it:graph[node]){
+                cout<<it<<endl;
+                indegree[it]--;
+                if (indegree[it]==0){
+                    qu.push(it);
+                }
             }
         }
 
-        vector<int>ans;
-        stack<int>qu;
-        vector<int> visited(n,0);
-        for (int i=0;i<n;i++)
-        {
-            if (rootNode[i]==1)
-            qu.push(i);
+        for (int i=0;i<n;i++){
+            if (indegree[i]!=0)return false;
         }
-        while(!qu.empty())
-        {
-            int currNode=qu.top();
-            qu.pop();
-            bool hasCycle=false;
-            dfs(graph,visited,currNode,ans,hasCycle);
-            if (hasCycle){
-                return false;
-            }
-        }
-        if (ans.size()==n)
         return true;
-        else
-        return false;
     }
 };
