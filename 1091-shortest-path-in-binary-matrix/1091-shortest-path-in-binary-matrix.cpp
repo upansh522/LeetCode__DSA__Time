@@ -1,38 +1,36 @@
 class Solution {
+    vector<pair<int,int>>dir={{1,0},{0,1},{-1,0},{0,-1},{1,1},{-1,-1},{1,-1},{-1,1}};
 public:
-    vector<pair<int, int>> dir = {{1, 0},   {0, 1},  {0, -1}, {-1, 0},
-                                  {-1, -1}, {-1, 1}, {1, -1}, {1, 1}};
     int shortestPathBinaryMatrix(vector<vector<int>>& grid) {
-        int ans = 0, n = grid.size();
-        if (grid[0][0]==1)return-1;
-        queue<pair<int, int>> q;
-        vector<vector<int>> visited(n, vector<int>(n, 0));
-        q.push({0, 0});
-        visited[0][0] = 1;
+        int n=grid.size();
+        priority_queue<pair<int,pair<int,int>>,vector<pair<int,pair<int,int>>>,greater<pair<int,pair<int,int>>>>pq;
+        vector<vector<int>>visited(n,vector<int>(n,0));
 
-        while (!q.empty()) {
-            ans++;
-            int size = q.size();
+        if (grid[0][0]==0){
+            pq.push({1,{0,0}});
+            visited[0][0]=1;
+        }
 
-            for (int i = 0; i < size; i++) {
-                auto [row, col] = q.front();
-                q.pop();
-                if (row == n - 1 && col == n - 1)
-                    return ans;
-                for (auto it : dir) {
-                    int newRow = row + it.first;
-                    int newCol = col + it.second;
-                    if (newRow < n && newRow >= 0 && newCol < n &&
-                        newCol >= 0) {
-                        if (visited[newRow][newCol] == 0 &&
-                            grid[newRow][newCol] == 0) {
-                            q.push({newRow, newCol});
-                            visited[newRow][newCol] = 1;
-                        }
-                    }
+        while(!pq.empty()){
+            auto [step,pos]=pq.top();
+            pq.pop();
+            
+            int currRow=pos.first; int currCol=pos.second;
+
+            if (currRow==n-1 && currCol==n-1)
+            return step;
+
+            for (auto it:dir){
+                int newRow=currRow+it.first;
+                int newCol=currCol+it.second;
+
+                if (newRow>=0 && newCol>=0 && newRow<n && newCol<n && grid[newRow][newCol]==0 && visited[newRow][newCol]==0){
+                    visited[newRow][newCol]=1;
+                    pq.push({step+1,{newRow,newCol}});
                 }
             }
         }
+
         return -1;
     }
 };
