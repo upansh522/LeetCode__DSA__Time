@@ -7,10 +7,12 @@ Collection of LeetCode questions to ace the coding interview! - Created using [L
 | Problem Name | Difficulty |
 | ------- | ------- |
 | [0930-binary-subarrays-with-sum](https://github.com/upansh522/LeetCode__DSA__Time/tree/main/0930-binary-subarrays-with-sum/) | Medium |
+| [3020-find-the-maximum-number-of-elements-in-subset](https://github.com/upansh522/LeetCode__DSA__Time/tree/main/3020-find-the-maximum-number-of-elements-in-subset/) | Medium |
 ## Hash Table
 | Problem Name | Difficulty |
 | ------- | ------- |
 | [0930-binary-subarrays-with-sum](https://github.com/upansh522/LeetCode__DSA__Time/tree/main/0930-binary-subarrays-with-sum/) | Medium |
+| [3020-find-the-maximum-number-of-elements-in-subset](https://github.com/upansh522/LeetCode__DSA__Time/tree/main/3020-find-the-maximum-number-of-elements-in-subset/) | Medium |
 ## Sliding Window
 | Problem Name | Difficulty |
 | ------- | ------- |
@@ -19,4 +21,8 @@ Collection of LeetCode questions to ace the coding interview! - Created using [L
 | Problem Name | Difficulty |
 | ------- | ------- |
 | [0930-binary-subarrays-with-sum](https://github.com/upansh522/LeetCode__DSA__Time/tree/main/0930-binary-subarrays-with-sum/) | Medium |
+## Enumeration
+| Problem Name | Difficulty |
+| ------- | ------- |
+| [3020-find-the-maximum-number-of-elements-in-subset](https://github.com/upansh522/LeetCode__DSA__Time/tree/main/3020-find-the-maximum-number-of-elements-in-subset/) | Medium |
 <!---LeetCode Topics End-->
