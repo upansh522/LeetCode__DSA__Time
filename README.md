@@ -6,6 +6,7 @@ Collection of LeetCode questions to ace the coding interview! - Created using [L
 ## Array
 | Problem Name | Difficulty |
 | ------- | ------- |
+| [0033-search-in-rotated-sorted-array](https://github.com/upansh522/LeetCode__DSA__Time/tree/main/0033-search-in-rotated-sorted-array/) | Medium |
 | [0930-binary-subarrays-with-sum](https://github.com/upansh522/LeetCode__DSA__Time/tree/main/0930-binary-subarrays-with-sum/) | Medium |
 | [1769-minimum-number-of-operations-to-move-all-balls-to-each-box](https://github.com/upansh522/LeetCode__DSA__Time/tree/main/1769-minimum-number-of-operations-to-move-all-balls-to-each-box/) | Medium |
 | [1846-maximum-element-after-decreasing-and-rearranging](https://github.com/upansh522/LeetCode__DSA__Time/tree/main/1846-maximum-element-after-decreasing-and-rearranging/) | Medium |
@@ -45,4 +46,8 @@ Collection of LeetCode questions to ace the coding interview! - Created using [L
 | Problem Name | Difficulty |
 | ------- | ------- |
 | [0072-edit-distance](https://github.com/upansh522/LeetCode__DSA__Time/tree/main/0072-edit-distance/) | Medium |
+## Binary Search
+| Problem Name | Difficulty |
+| ------- | ------- |
+| [0033-search-in-rotated-sorted-array](https://github.com/upansh522/LeetCode__DSA__Time/tree/main/0033-search-in-rotated-sorted-array/) | Medium |
 <!---LeetCode Topics End-->
