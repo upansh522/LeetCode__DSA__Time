@@ -39,5 +39,10 @@ Collection of LeetCode questions to ace the coding interview! - Created using [L
 ## String
 | Problem Name | Difficulty |
 | ------- | ------- |
+| [0072-edit-distance](https://github.com/upansh522/LeetCode__DSA__Time/tree/main/0072-edit-distance/) | Medium |
 | [1769-minimum-number-of-operations-to-move-all-balls-to-each-box](https://github.com/upansh522/LeetCode__DSA__Time/tree/main/1769-minimum-number-of-operations-to-move-all-balls-to-each-box/) | Medium |
+## Dynamic Programming
+| Problem Name | Difficulty |
+| ------- | ------- |
+| [0072-edit-distance](https://github.com/upansh522/LeetCode__DSA__Time/tree/main/0072-edit-distance/) | Medium |
 <!---LeetCode Topics End-->
