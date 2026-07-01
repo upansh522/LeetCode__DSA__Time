@@ -50,9 +50,18 @@ Collection of LeetCode questions to ace the coding interview! - Created using [L
 ## Dynamic Programming
 | Problem Name | Difficulty |
 | ------- | ------- |
+| [0062-unique-paths](https://github.com/upansh522/LeetCode__DSA__Time/tree/main/0062-unique-paths/) | Medium |
 | [0072-edit-distance](https://github.com/upansh522/LeetCode__DSA__Time/tree/main/0072-edit-distance/) | Medium |
 ## Binary Search
 | Problem Name | Difficulty |
 | ------- | ------- |
 | [0033-search-in-rotated-sorted-array](https://github.com/upansh522/LeetCode__DSA__Time/tree/main/0033-search-in-rotated-sorted-array/) | Medium |
+## Math
+| Problem Name | Difficulty |
+| ------- | ------- |
+| [0062-unique-paths](https://github.com/upansh522/LeetCode__DSA__Time/tree/main/0062-unique-paths/) | Medium |
+## Combinatorics
+| Problem Name | Difficulty |
+| ------- | ------- |
+| [0062-unique-paths](https://github.com/upansh522/LeetCode__DSA__Time/tree/main/0062-unique-paths/) | Medium |
 <!---LeetCode Topics End-->
