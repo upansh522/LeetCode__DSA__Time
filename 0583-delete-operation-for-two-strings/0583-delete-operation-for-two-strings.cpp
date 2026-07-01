@@ -1,17 +1,18 @@
 class Solution {
 public:
-    int minDistance(string s, string t) {
-        int n1=s.size(),n2=t.size();
-        vector<vector<int>>dp(n1+1,vector<int>(n2+1,0));
-        for (int i=1;i<=n1;i++){
-            for(int j=1;j<=n2;j++){
-                if (s[i-1]==t[j-1])
-                dp[i][j]=1+dp[i-1][j-1];
-                else
-                dp[i][j]=max(dp[i-1][j],dp[i][j-1]);
-            }
-        }
+int f(string s, string t, int i, int j, vector<vector<int>>&dp){
+    if (i<0)return j+1;
+    if (j<0)return i+1;
 
-        return n1+n2-(2*dp[n1][n2]);
+    if (dp[i][j]!=INT_MAX)return dp[i][j];
+    if (s[i]==t[j])return f(s,t,i-1,j-1,dp);
+    return dp[i][j]=1+min(f(s,t,i-1,j, dp), f(s,t,i,j-1,dp));
+}
+    int minDistance(string s, string t) {
+        int m=s.size();
+        int n=t.size();
+        vector<vector<int>>dp(m, vector<int>(n, INT_MAX));
+        return f(s, t, m-1, n-1, dp);
+        
     }
 };
