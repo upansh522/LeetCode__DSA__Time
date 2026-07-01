@@ -1,28 +1,39 @@
 class Solution {
 public:
-int f(vector<vector<int>>& obstacleGrid,int m, int n, vector<vector<int>>&dp, int currRow,int currCol){
-    if (currRow==m || currCol==n || obstacleGrid[currRow][currCol]==1){
-        return 0;
-    }
-    if (currRow==m-1 && currCol==n-1){
-        return 1;
-    }
-    vector<pair<int,int>> dir={{1,0},{0,1}};
+    vector<pair<int,int>> dir = {{1,0},{0,1}};
 
-    for (auto [increRow,increCol]: dir){
-        if (dp[currRow+increRow][currCol+increCol]!=0){
-            dp[currRow][currCol]+=dp[currRow+increRow][currCol+increCol];
-        }
-        else {
-            dp[currRow][currCol]+=f(obstacleGrid,m,n,dp,currRow+increRow,currCol+increCol);
-        }
+    int dfs(vector<vector<int>>& grid, int i, int j,
+            vector<vector<int>>& dp) {
+
+        int m = grid.size();
+        int n = grid[0].size();
+
+        if (i >= m || j >= n)
+            return 0;
+
+        if (grid[i][j] == 1)
+            return 0;
+
+        if (i == m-1 && j == n-1)
+            return 1;
+
+        if (dp[i][j] != -1)
+            return dp[i][j];
+
+        int ans = 0;
+
+        for (auto [dx, dy] : dir)
+            ans += dfs(grid, i + dx, j + dy, dp);
+
+        return dp[i][j] = ans;
     }
-    return dp[currRow][currCol];
-}
+
     int uniquePathsWithObstacles(vector<vector<int>>& obstacleGrid) {
-        int m=obstacleGrid.size(),n=obstacleGrid[0].size();
+        int m = obstacleGrid.size();
+        int n = obstacleGrid[0].size();
 
-        vector<vector<int>> dp(m+1,vector<int>(n+1,0));
-        return f(obstacleGrid,m,n,dp,0,0);
+        vector<vector<int>> dp(m, vector<int>(n, -1));
+
+        return dfs(obstacleGrid, 0, 0, dp);
     }
 };
