@@ -12,6 +12,7 @@ Collection of LeetCode questions to ace the coding interview! - Created using [L
 | [0930-binary-subarrays-with-sum](https://github.com/upansh522/LeetCode__DSA__Time/tree/main/0930-binary-subarrays-with-sum/) | Medium |
 | [1769-minimum-number-of-operations-to-move-all-balls-to-each-box](https://github.com/upansh522/LeetCode__DSA__Time/tree/main/1769-minimum-number-of-operations-to-move-all-balls-to-each-box/) | Medium |
 | [1846-maximum-element-after-decreasing-and-rearranging](https://github.com/upansh522/LeetCode__DSA__Time/tree/main/1846-maximum-element-after-decreasing-and-rearranging/) | Medium |
+| [2812-find-the-safest-path-in-a-grid](https://github.com/upansh522/LeetCode__DSA__Time/tree/main/2812-find-the-safest-path-in-a-grid/) | Medium |
 | [3020-find-the-maximum-number-of-elements-in-subset](https://github.com/upansh522/LeetCode__DSA__Time/tree/main/3020-find-the-maximum-number-of-elements-in-subset/) | Medium |
 ## Hash Table
 | Problem Name | Difficulty |
@@ -58,6 +59,7 @@ Collection of LeetCode questions to ace the coding interview! - Created using [L
 | Problem Name | Difficulty |
 | ------- | ------- |
 | [0033-search-in-rotated-sorted-array](https://github.com/upansh522/LeetCode__DSA__Time/tree/main/0033-search-in-rotated-sorted-array/) | Medium |
+| [2812-find-the-safest-path-in-a-grid](https://github.com/upansh522/LeetCode__DSA__Time/tree/main/2812-find-the-safest-path-in-a-grid/) | Medium |
 ## Math
 | Problem Name | Difficulty |
 | ------- | ------- |
@@ -70,4 +72,17 @@ Collection of LeetCode questions to ace the coding interview! - Created using [L
 | Problem Name | Difficulty |
 | ------- | ------- |
 | [0063-unique-paths-ii](https://github.com/upansh522/LeetCode__DSA__Time/tree/main/0063-unique-paths-ii/) | Medium |
+| [2812-find-the-safest-path-in-a-grid](https://github.com/upansh522/LeetCode__DSA__Time/tree/main/2812-find-the-safest-path-in-a-grid/) | Medium |
+## Breadth-First Search
+| Problem Name | Difficulty |
+| ------- | ------- |
+| [2812-find-the-safest-path-in-a-grid](https://github.com/upansh522/LeetCode__DSA__Time/tree/main/2812-find-the-safest-path-in-a-grid/) | Medium |
+## Union-Find
+| Problem Name | Difficulty |
+| ------- | ------- |
+| [2812-find-the-safest-path-in-a-grid](https://github.com/upansh522/LeetCode__DSA__Time/tree/main/2812-find-the-safest-path-in-a-grid/) | Medium |
+## Heap (Priority Queue)
+| Problem Name | Difficulty |
+| ------- | ------- |
+| [2812-find-the-safest-path-in-a-grid](https://github.com/upansh522/LeetCode__DSA__Time/tree/main/2812-find-the-safest-path-in-a-grid/) | Medium |
 <!---LeetCode Topics End-->
