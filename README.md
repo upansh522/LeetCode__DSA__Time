@@ -7,6 +7,7 @@ Collection of LeetCode questions to ace the coding interview! - Created using [L
 | Problem Name | Difficulty |
 | ------- | ------- |
 | [0033-search-in-rotated-sorted-array](https://github.com/upansh522/LeetCode__DSA__Time/tree/main/0033-search-in-rotated-sorted-array/) | Medium |
+| [0063-unique-paths-ii](https://github.com/upansh522/LeetCode__DSA__Time/tree/main/0063-unique-paths-ii/) | Medium |
 | [0135-candy](https://github.com/upansh522/LeetCode__DSA__Time/tree/main/0135-candy/) | Hard |
 | [0930-binary-subarrays-with-sum](https://github.com/upansh522/LeetCode__DSA__Time/tree/main/0930-binary-subarrays-with-sum/) | Medium |
 | [1769-minimum-number-of-operations-to-move-all-balls-to-each-box](https://github.com/upansh522/LeetCode__DSA__Time/tree/main/1769-minimum-number-of-operations-to-move-all-balls-to-each-box/) | Medium |
@@ -51,6 +52,7 @@ Collection of LeetCode questions to ace the coding interview! - Created using [L
 | Problem Name | Difficulty |
 | ------- | ------- |
 | [0062-unique-paths](https://github.com/upansh522/LeetCode__DSA__Time/tree/main/0062-unique-paths/) | Medium |
+| [0063-unique-paths-ii](https://github.com/upansh522/LeetCode__DSA__Time/tree/main/0063-unique-paths-ii/) | Medium |
 | [0072-edit-distance](https://github.com/upansh522/LeetCode__DSA__Time/tree/main/0072-edit-distance/) | Medium |
 ## Binary Search
 | Problem Name | Difficulty |
@@ -64,4 +66,8 @@ Collection of LeetCode questions to ace the coding interview! - Created using [L
 | Problem Name | Difficulty |
 | ------- | ------- |
 | [0062-unique-paths](https://github.com/upansh522/LeetCode__DSA__Time/tree/main/0062-unique-paths/) | Medium |
+## Matrix
+| Problem Name | Difficulty |
+| ------- | ------- |
+| [0063-unique-paths-ii](https://github.com/upansh522/LeetCode__DSA__Time/tree/main/0063-unique-paths-ii/) | Medium |
 <!---LeetCode Topics End-->
